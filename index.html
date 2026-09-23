@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Mission Control | Panel de Control</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Barra de navegación superior -->
+    <nav class="navbar">
+      <div class="nav-brand">
+        <span class="logo">🛸</span>
+        <div>
+          <h1>SPACE MISSION CONTROL</h1>
+          <span class="nav-sub">Panel de Control v2.0</span>
+        </div>
+      </div>
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span id="navStatus">SISTEMA EN LÍNEA</span>
+        <span class="nav-time" id="navTime">--:--:--</span>
+      </div>
+    </nav>
+
+    <!-- Contenedor principal con sidebar -->
+    <div class="app-container">
+      <!-- Sidebar de navegación por fases -->
+      <aside class="sidebar">
+        <h3>MÓDULOS</h3>
+        <ul class="nav-menu">
+          <li>
+            <a href="#fase1" class="nav-link active" data-fase="1"
+              ><span>01</span> Identificación</a
+            >
+          </li>
+          <li>
+            <a href="#fase2" class="nav-link" data-fase="2"
+              ><span>02</span> Telemetría</a
+            >
+          </li>
+          <li>
+            <a href="#fase3" class="nav-link" data-fase="3"
+              ><span>03</span> Control de Sistemas</a
+            >
+          </li>
+          <li>
+            <a href="#fase4" class="nav-link" data-fase="4"
+              ><span>04</span> Radar de Asteroides</a
+            >
+          </li>
+          <li>
+            <a href="#fase5" class="nav-link" data-fase="5"
+              ><span>05</span> Monitor de Rendimiento</a
+            >
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <p>UNCP - Ing. Sistemas</p>
+          <p>Semana 4 - IS093A</p>
+        </div>
+      </aside>
+
+      <!-- Área de contenido -->
+      <main class="content">
+        <!-- ============================================
+                 FASE 1: IDENTIFICACIÓN DEL OPERADOR
+                 ============================================ -->
+        <section class="fase" id="fase1">
+          <div class="fase-header">
+            <div>
+              <span class="fase-tag">MÓDULO 01</span>
+              <h2>Identificación del Operador</h2>
+              <p>Setup HTML + UI con Canvas y Controles</p>
+            </div>
+            <span class="fase-badge">✅ ACTIVO</span>
+          </div>
+
+          <div class="fase-body">
+            <div class="panel">
+              <h3>Credenciales de Misión</h3>
+              <div class="form-group">
+                <label for="nombreInput">Nombre del Operador</label>
+                <input
+                  type="text"
+                  id="nombreInput"
+                  placeholder="Ingrese su nombre"
+                  value="MIGUEL"
+                />
+              </div>
+              <div class="form-group">
+                <label for="misionInput">Nombre de la Misión</label>
+                <input
+                  type="text"
+                  id="misionInput"
+                  placeholder="Ej: ARTEMIS VII"
+                  value="ARTEMIS VII"
+                />
+              </div>
+              <div class="form-group">
+                <label for="velocidadRange"
+                  >Velocidad de Simulación:
+                  <span id="velocidadValor">5</span>x</label
+                >
+                <input
+                  type="range"
+                  id="velocidadRange"
+                  min="1"
+                  max="10"
+                  value="5"
+                />
+              </div>
+              <div class="btn-group">
+                <button id="btnPlay" class="btn btn-primary">▶ Iniciar</button>
+                <button id="btnPause" class="btn btn-danger">⏸ Pausar</button>
+                <button id="btnReset" class="btn btn-secondary">
+                  🔄 Reiniciar
+                </button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>Visualización de Credenciales</h3>
+              <canvas id="canvasFase1" width="600" height="250"></canvas>
+              <p class="hint">
+                El canvas se actualiza en tiempo real según los datos ingresados
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+                 FASE 2: TELEMETRÍA (IIFE + Closures)
+                 ============================================ -->
+        <section class="fase" id="fase2">
+          <div class="fase-header">
+            <div>
+              <span class="fase-tag">MÓDULO 02</span>
+              <h2>Telemetría de la Misión</h2>
+              <p>IIFE + Closures + Arrow Functions</p>
+            </div>
+            <span class="fase-badge">✅ ACTIVO</span>
+          </div>
+
+          <div class="fase-body">
+            <div class="telemetry-grid">
+              <div class="telemetry-card">
+                <span class="telemetry-icon">📡</span>
+                <span class="telemetry-value" id="telFrames">0</span>
+                <span class="telemetry-label">Frames Procesados</span>
+              </div>
+              <div class="telemetry-card">
+                <span class="telemetry-icon">🎯</span>
+                <span class="telemetry-value" id="telClicks">0</span>
+                <span class="telemetry-label">Comandos Enviados</span>
+              </div>
+              <div class="telemetry-card">
+                <span class="telemetry-icon">⚡</span>
+                <span class="telemetry-value" id="telEnergia">100%</span>
+                <span class="telemetry-label">Energía</span>
+              </div>
+              <div class="telemetry-card">
+                <span class="telemetry-icon">🌡️</span>
+                <span class="telemetry-value" id="telTemp">22°C</span>
+                <span class="telemetry-label">Temperatura</span>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>Registro de Actividad</h3>
+              <div class="log-container" id="logContainer">
+                <p class="log-entry">[SISTEMA] Telemetría inicializada...</p>
+              </div>
+              <div class="btn-group">
+                <button id="btnComando" class="btn btn-primary">
+                  📤 Enviar Comando
+                </button>
+                <button id="btnResetTelemetria" class="btn btn-secondary">
+                  🔄 Reset Telemetría
+                </button>
+              </div>
+              <p class="hint">
+                💡 El closure retiene el estado de la telemetría sin variables
+                globales
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+                 FASE 3: CONTROL DE SISTEMAS (DOM)
+                 ============================================ -->
+        <section class="fase" id="fase3">
+          <div class="fase-header">
+            <div>
+              <span class="fase-tag">MÓDULO 03</span>
+              <h2>Control de Sistemas</h2>
+              <p>Manipulación DOM + Validación</p>
+            </div>
+            <span class="fase-badge">✅ ACTIVO</span>
+          </div>
+
+          <div class="fase-body">
+            <div class="systems-grid">
+              <div class="system-card" id="sysMotor">
+                <span class="system-icon">🔥</span>
+                <h4>Motor Principal</h4>
+                <p class="system-status">EN ESPERA</p>
+                <button class="btn btn-small" data-system="motor">
+                  Toggle
+                </button>
+              </div>
+              <div class="system-card" id="sysEscudos">
+                <span class="system-icon">🛡️</span>
+                <h4>Escudos</h4>
+                <p class="system-status">EN ESPERA</p>
+                <button class="btn btn-small" data-system="escudos">
+                  Toggle
+                </button>
+              </div>
+              <div class="system-card" id="sysComunicaciones">
+                <span class="system-icon">📻</span>
+                <h4>Comunicaciones</h4>
+                <p class="system-status">EN ESPERA</p>
+                <button class="btn btn-small" data-system="comunicaciones">
+                  Toggle
+                </button>
+              </div>
+              <div class="system-card" id="sysArmas">
+                <span class="system-icon">⚔️</span>
+                <h4>Sistema de Defensa</h4>
+                <p class="system-status">EN ESPERA</p>
+                <button class="btn btn-small" data-system="armas">
+                  Toggle
+                </button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>Validación de Acceso</h3>
+              <div class="form-group">
+                <label for="emailInput">Correo de Operador Autorizado</label>
+                <input
+                  type="email"
+                  id="emailInput"
+                  placeholder="operador@uncp.edu.pe"
+                />
+                <span id="emailMensaje" class="validation-msg"></span>
+              </div>
+              <div class="form-group">
+                <label for="codigoInput">Código de Acceso (6 dígitos)</label>
+                <input
+                  type="text"
+                  id="codigoInput"
+                  placeholder="123456"
+                  maxlength="6"
+                />
+                <span id="codigoMensaje" class="validation-msg"></span>
+              </div>
+              <button id="btnAcceder" class="btn btn-primary" disabled>
+                🔓 Acceder al Sistema
+              </button>
+              <p class="hint">
+                💡 classList.toggle() en lugar de style inline para mejor
+                rendimiento
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+                 FASE 4: RADAR DE ASTEROIDES (Canvas + RAF)
+                 ============================================ -->
+        <section class="fase" id="fase4">
+          <div class="fase-header">
+            <div>
+              <span class="fase-tag">MÓDULO 04</span>
+              <h2>Radar de Asteroides</h2>
+              <p>Canvas API + requestAnimationFrame + Delta Time</p>
+            </div>
+            <span class="fase-badge">✅ ACTIVO</span>
+          </div>
+
+          <div class="fase-body">
+            <div class="panel">
+              <div class="radar-controls">
+                <button id="btnIniciarRadar" class="btn btn-primary">
+                  ▶ Iniciar Radar
+                </button>
+                <button id="btnDetenerRadar" class="btn btn-danger">
+                  ⏸ Detener
+                </button>
+                <button id="btnAddAsteroide" class="btn btn-success">
+                  + Añadir Asteroide
+                </button>
+                <span class="radar-info"
+                  >Asteroides: <strong id="contadorAsteroides">0</strong></span
+                >
+              </div>
+              <canvas id="canvasFase4" width="800" height="400"></canvas>
+              <p class="hint">
+                💡 requestAnimationFrame con delta time para movimiento uniforme
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+                 FASE 5: MONITOR DE RENDIMIENTO
+                 ============================================ -->
+        <section class="fase" id="fase5">
+          <div class="fase-header">
+            <div>
+              <span class="fase-tag">MÓDULO 05</span>
+              <h2>Monitor de Rendimiento</h2>
+              <p>Métricas en vivo, FPS, Memoria, Listeners y Leaks</p>
+            </div>
+            <span class="fase-badge" id="estadoSalud">✅ SALUDABLE</span>
+          </div>
+
+          <div class="fase-body">
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <span class="metric-value" id="fpsActual">0</span>
+                <span class="metric-label">FPS Actual</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-value" id="memoriaMB">0</span>
+                <span class="metric-label">Memoria (MB)</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-value" id="listenersActivos">0</span>
+                <span class="metric-label">Listeners Activos</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-value" id="posiblesLeaks">0</span>
+                <span class="metric-label">Posibles Leaks</span>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>Historial de FPS (últimos 60 segundos)</h3>
+              <canvas id="fpsChart" width="800" height="120"></canvas>
+            </div>
+
+            <div class="panel">
+              <h3>Uso de Memoria Heap</h3>
+              <div class="memory-bar">
+                <div class="memory-fill" id="barraMemoria"></div>
+              </div>
+              <span class="memory-percent" id="porcentajeMemoria">0%</span>
+            </div>
+
+            <div class="btn-group">
+              <button id="btnAnalizar" class="btn btn-primary">
+                🔍 Analizar Rendimiento
+              </button>
+              <button id="btnSimularLeak" class="btn btn-warning">
+                ⚠ Simular Memory Leak
+              </button>
+              <button id="btnLimpiarMemoria" class="btn btn-success">
+                🧹 Limpiar Memoria
+              </button>
+            </div>
+
+            <div class="console-panel">
+              <div class="console-header">📟 CONSOLA DE MONITOREO</div>
+              <div class="console-body" id="consoleLog">
+                <p>> Sistema de monitoreo iniciado...</p>
+                <p>> Esperando acciones del operador...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
